@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class='h-screen bg-slate-200 flex items-center mb-0 justify-center'>
+    <div id='form' class='bg-white p-8 rounded-md shadow-md w-full max-w-md'>
+        <h2 class='text-2xl font-bold mb-6 text-center'>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
+                        {{ field.label_tag }}
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-red-500 text-xs italic">{{ field.errors }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

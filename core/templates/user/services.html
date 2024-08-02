@@ -1,0 +1,73 @@
+<!-- services.html -->
+
+{% extends 'base.html' %} 
+{% block body %}
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"></head>
+<body class="bg-gray-100">
+    {% load static %}
+   
+    <main class="container mx-auto py-8 px-6">
+        <h1 class="text-[3rem] font-bold md:text-[40px] text-bold text-orange-500 text-center my-11">Our Services</h1>
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Same-Day Delivery</h3>
+                <p class="text-gray-700">Get your packages delivered on the same day with our efficient bike couriers.</p>
+                <img class="w-full h-30 object-cover rounded-full" src="{% static 'images/same.jpg' %}" alt="Team Member">
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Food Delivery</h3>
+                <p class="text-gray-700">Enjoy hot and fresh food from your favorite restaurants delivered right to your door.</p>
+                <img class="w-full h-30 object-cover rounded-full" src="{% static 'images/food.jpg' %}" alt="Team Member">
+
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Parcel Delivery</h3>
+                <p class="text-gray-700">Send and receive parcels quickly and securely with our reliable bike couriers.</p>
+                <img class="w-full h-30 object-cover rounded-full" src="{% static 'images/parcel.jpg' %}" alt="Team Member">
+
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Medical Deliveries</h3>
+                <p class="text-gray-700">Ensure timely delivery of medical supplies and prescriptions with our specialized service.</p>
+                <img class="w-full h-30 object-cover rounded-full" src="{% static 'images/medic.jpg' %}" alt="Team Member">
+
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Grocery Delivery</h3>
+                <p class="text-gray-700">Save time and hassle with our convenient grocery delivery service.</p>
+                <img class="w-full h-30 object-cover rounded-full" src="{% static 'images/groc.jpg' %}" alt="Team Member">
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Customized Deliveries</h3>
+                <p class="text-gray-700">Need something special? We offer customized delivery solutions to meet your unique requirements.</p>
+                <img class="w-full h-30 object-cover rounded-full" src="{% static 'images/sup.jpg' %}" alt="Team Member">
+            </div>
+        </section>
+    </main>
+
+    {% endblock %}
+</body>
+</html>
+
+<h2 class="text-[3rem] font-bold md:text-[40px] text-bold text-center font-sans text-zinc-600 mt-5 mb-5">
+    Delivery Packages
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="p-4"><img class="w-full h-30 object-cover rounded-lg" src="{% static 'images/sup.jpg' %}" alt="Team Member"></div>
+    <div class="p-4"><img class="w-full h-30 object-cover rounded-lg" src="{% static 'images/food.jpg' %}" alt="Team Member"></div>
+    <div class="p-4"><img class="w-full h-30 object-cover rounded-lg" src="{% static 'images/medic.jpg' %}" alt="Team Member"></div>
+    <div class="p-4"><img class="w-full h-30 object-cover rounded-lg" src="{% static 'images/parcel.jpg' %}" alt="Team Member"></div>
+    <div class="p-4"><img class="w-full h-30 object-cover rounded-lg" src="{% static 'images/groc.jpg' %}" alt="Team Member"></div>
+    <div class="p-4"><img class="w-full h-30 object-cover rounded-lg" src="{% static 'images/clothes.jpg' %}" alt="Team Member"></div>
+  </div>
+
+
+

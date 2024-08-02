@@ -1,0 +1,197 @@
+from typing import Any
+from django.http import HttpRequest
+from django.http.response import HttpResponse as HttpResponse
+from django.shortcuts import render,get_object_or_404
+from django.views.generic import TemplateView
+from .forms import SignUpForm,OrderForm
+from django.contrib.auth import authenticate,login,logout
+from .models import User,Order,RiderProfile
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, render
+from django.views.generic import View
+from django.contrib.auth.views import LoginView
+from .forms import LoginForm
+from . import forms
+from django.contrib import messages
+from .forms import UserEditForm
+from django.contrib.auth.decorators import login_required
+
+
+
+def logoutview(request):
+    logout(request)
+    return redirect("login")
+
+
+
+def login_page(request):
+    if request.user.is_authenticated:
+        return redirect(reverse_lazy('dashboard'))
+
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(reverse_lazy('dashboard'))
+            else:
+                messages.error(request, 'Invalid username or password.')
+        else:
+            messages.error(request, 'Invalid username or password.')
+    else:
+        form = LoginForm()
+
+    return render(request, 'user/login.html', context={'form': form})
+
+
+
+@login_required
+def edit_user(request):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')  
+    else:
+        form = UserEditForm(instance=request.user)
+
+    return render(request, 'dashboard.html', {'user_form': form})
+
+
+# def login_page(request):    THIS CODE IS WORKING FINE
+#     if request.method == 'POST':
+#         form = LoginForm(request, data=request.POST)
+#         if form.is_valid():
+#             user = authenticate(request,
+#                 username=form.cleaned_data['username'],
+#                 password=form.cleaned_data['password'],
+#             )
+#             if user is not None:
+#                 login(request, user)
+#                 return redirect (reverse_lazy('core:dashboard'))
+#             else:
+#                 message  = 'Login failed!'
+#     else:
+        
+#         form = LoginForm()
+#     return render(request, 'user/login.html', context={'form': form})
+
+# class LoginView(View):
+#     template_name = 'user/login.html'
+#     authentication_form = forms.LoginForm
+
+#     def get(self, request):
+#         form = self.authentication_form()
+#         message = ''
+#         return render(request, self.template_name, context={'form': form, 'message': message})
+        
+#     def post(self, request):
+#         form = self.authentication_form(request.POST)
+#         if form.is_valid():
+#             user = authenticate(
+#                 email=form.cleaned_data['email'],
+#                 password=form.cleaned_data['password'],
+#             )
+#             if request.user.is_authenticated:
+#                 return redirect('core:dashboard')
+#             if user is not None:
+#                 try:
+#                    login(request, user)
+#                    return redirect('core:dashboard')
+#                 except Exception as e:
+#                     return e
+#         message = 'Login failed!'
+#         return render(request, self.template_name, context={'form': form, 'message': message})
+    
+
+def my_view(request):
+    return render(request, "index.html")
+
+def services(request):
+    return render(request, "user/services.html")
+
+class About(TemplateView):
+     template_name = 'user/about.html'
+
+
+class Contact(TemplateView):
+    template_name = "user/contact.html"
+
+
+
+class SignUpView(TemplateView):
+    template_name = 'user/signup.html'
+    
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        form = SignUpForm()
+        return render(request,self.template_name,{"form":form})
+    
+    def post(self,request,*args,**kwargs):
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(
+                email=form.cleaned_data.get("email",None),
+                first_name = form.cleaned_data.get("first_name",None),
+                last_name = form.cleaned_data.get("last_name",None),
+                password = form.cleaned_data.get("password1",None)
+        
+            )
+            login(request,user)
+
+            return redirect("login")
+        return render(request,self.template_name,{'form':form})
+
+
+class Dashboard(LoginRequiredMixin,TemplateView):
+    login_url = '/signup'
+    template_name = 'user/dashboard.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context =  super().get_context_data(**kwargs)
+        orders = Order.objects.filter(customer =self.request.user).filter(completed = False)
+        history = Order.objects.filter(customer =self.request.user).filter(completed = True)
+        user_form = UserEditForm(instance=self.request.user)
+        
+        form = OrderForm()
+        context['form'] = form 
+        context['orders'] = orders
+        context['history'] = history
+        context['user_form'] = user_form
+
+        return context
+    
+
+# class LoginView(View):
+#     template = 'login.html'
+#     form_class = forms.
+#     pass
+    
+def create_order(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+           item_description = form.cleaned_data['item_description']
+           pickup_location = form.cleaned_data['pickup_location']
+           delivery_location = form.cleaned_data['delivery_location']
+
+           rider = RiderProfile.objects.order_by("?").all()[0]
+           order = Order.objects.create(pickup_location = pickup_location, item_description = item_description, delivery_location = delivery_location,customer = request.user,driver = rider)
+
+           return redirect("dashboard")
+    else:
+        form = OrderForm()
+        
+    return render(request, 'create_order.html', {'form': form})
+
+
+
+def delete_order(request,id = None):
+    obj  = get_object_or_404(Order,id = id)
+    obj.delete()
+    return redirect(
+        reverse_lazy("dashboard")
+    )

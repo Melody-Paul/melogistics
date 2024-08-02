@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MELO-LOGISTICS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Add FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src=""></script>
+    <style>
+      .hidden {
+        display: none;
+      }
+      .floating-button {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background-color: #3182ce;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        animation: bounce 1s infinite alternate;
+      }
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-10px);
+        }
+      }
+      .tabs {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f3f4f6;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+      }
+      .tab-button {
+        flex: 1;
+        text-align: center;
+        padding: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .tab-button.active {
+        background-color: #3182ce;
+        color: white;
+      }
+      .tab-button:not(.active):hover {
+        background-color: #e2e8f0;
+      }
+      main {
+        padding-bottom: 60px; /* space for the tabs */
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Base template structure -->
+    <div class="flex h-screen flex-col">
+      <!-- Main content area -->
+      <main class="flex-1 p-4 overflow-y-auto">
+        <!-- Content area -->
+        <div class="flex justify-between py-2 bg-slate-500 px-3 rounded-lg">
+          <h1 class="py-3 px-2 rounded-lg text-right text-white font-semibold">
+            {{request.user}}
+          </h1>
+          <a
+            href="{% url 'logout' %}"
+            class="  hover:bg-gray-300 bg-gray-700 text-white font-roboto font-bold py-2 px-4 rounded"
+          >
+            Logout
+          </a>
+        </div>
+        <div class="">
+          <!-- Tab content -->
+          <div>
+            <!-- History Tab Content -->
+            <div id="history-tab" class="tab-content">
+              {% block history %} {% endblock %}
+            </div>
+            <!-- Orders Tab Content -->
+            <div id="orders-tab" class="tab-content hidden">
+              <!-- Your orders content here -->
+              {% block orders %} {% endblock %}
+            </div>
+            <!-- Settings Tab Content -->
+            <div id="settings-tab" class="tab-content hidden">
+              <!-- Your settings content here -->
+              {% block profile %} {% endblock %}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- Tabs at the bottom -->
+    <div class="tabs ">
+      <div id="history-tab-btn" class="tab-button active">
+        <i class="fa fa-history"></i><br />History
+      </div>
+      <div id="orders-tab-btn" class="tab-button">
+        <i class="fa fa-box"></i><br />Orders
+      </div>
+      <div id="settings-tab-btn" class="tab-button">
+        <i class="fa fa-cog"></i><br />Settings
+      </div>
+    </div>
+    <!-- Floating plus button -->
+    <div id="add-button" class="floating-button">
+      <i class="fa fa-plus"></i>
+    </div>
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="flex justify-end">
+          <button id="close-modal" class="text-red-500">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        <h2 class="text-xl font-bold mb-4">Add New Item</h2>
+        <form method="POST" action="{% url 'create_order' %}">
+          {% csrf_token %} {{form.as_p}}
+          <div class="flex justify-end">
+            <button
+              type="submit"
+              class="px-4 py-2 bg-blue-500 text-white rounded-md"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabs = {
+          history: document.getElementById("history-tab"),
+          orders: document.getElementById("orders-tab"),
+          settings: document.getElementById("settings-tab"),
+        };
+
+        const tabButtons = {
+          history: document.getElementById("history-tab-btn"),
+          orders: document.getElementById("orders-tab-btn"),
+          settings: document.getElementById("settings-tab-btn"),
+        };
+
+        function showTab(tabName) {
+          // Hide all tabs
+          for (let tab in tabs) {
+            tabs[tab].classList.add("hidden");
+          }
+
+          // Show selected tab
+          tabs[tabName].classList.remove("hidden");
+
+          // Update button styles
+          for (let button in tabButtons) {
+            tabButtons[button].classList.remove("active");
+          }
+          tabButtons[tabName].classList.add("active");
+        }
+
+        // Add event listeners to buttons
+        tabButtons.history.addEventListener("click", () => showTab("history"));
+        tabButtons.orders.addEventListener("click", () => showTab("orders"));
+        tabButtons.settings.addEventListener("click", () =>
+          showTab("settings")
+        );
+
+        // Show the default tab
+        showTab("history");
+
+        // Modal toggle
+        const addButton = document.getElementById("add-button");
+        const modal = document.getElementById("modal");
+        const closeModal = document.getElementById("close-modal");
+
+        addButton.addEventListener("click", () => {
+          modal.classList.toggle("hidden");
+        });
+
+        closeModal.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
+      });
+    </script>
+    <!-- Other head elements -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.5.2/dist/cdn.min.js"
+      defer
+    ></script>
+    <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+  var _smartsupp = _smartsupp || {};
+  _smartsupp.key = '47677a627ac3854f84c169fd1c6f12b7493d9426';
+  window.smartsupp||(function(d) {
+    var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+    s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+    c.type='text/javascript';c.charset='utf-8';c.async=true;
+    c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+  })(document);
+  </script>
+  <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+  </body>
+</html>
