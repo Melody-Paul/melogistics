@@ -13,9 +13,9 @@
             <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
                 <h2 class="text-xl font-semibold mb-4">Order Details</h2>
                 <p class="truncate"><strong>Pickup Location:</strong> {{ ride.pickup_location }}</p>
+                <p><strong>Customer:</strong> {{ ride.senders_phone_number }}</p>
                 <p class="truncate"><strong>Delivery Location:</strong> {{ ride.delivery_location }}</p>
-                {% comment %} <p class="truncate"><strong>Item Description:</strong> {{ ride.Item_description }}</p> {% endcomment %}
-                {% comment %} <p><strong>Customer:</strong> {{ ride.customer.username }}</p> {% endcomment %}
+                <p class="truncate"><strong>receivers_phone_number:</strong> {{ ride.receivers_phone_number }}</p>
                 <p><strong>Date Ordered:</strong> {{ ride.date_ordered }}</p> 
                 <p><strong>Stars:</strong> <span class="text-yellow-500 font-bold">{{ ride.stars }}</span></p>
                 <p><strong>Completed:</strong> 

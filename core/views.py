@@ -164,7 +164,7 @@ class Dashboard(LoginRequiredMixin,TemplateView):
 
         return context
     
-
+    
 # class LoginView(View):
 #     template = 'login.html'
 #     form_class = forms.
@@ -175,11 +175,13 @@ def create_order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
            item_description = form.cleaned_data['item_description']
+           senders_phone_number = form.cleaned_data['senders_phonenumber']
            pickup_location = form.cleaned_data['pickup_location']
+           receivers_phone_number = form.cleaned_data['receivers_phonenumber']
            delivery_location = form.cleaned_data['delivery_location']
 
            rider = RiderProfile.objects.order_by("?").all()[0]
-           order = Order.objects.create(pickup_location = pickup_location, item_description = item_description, delivery_location = delivery_location,customer = request.user,driver = rider)
+           order = Order.objects.create(pickup_location = pickup_location, senders_phone_number = senders_phone_number , item_description = item_description, delivery_location = delivery_location,receivers_phone_number = receivers_phone_number,customer = request.user,driver = rider)
 
            return redirect("dashboard")
     else:

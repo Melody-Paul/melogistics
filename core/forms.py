@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import User,Order
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import Permission
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 
 
@@ -13,23 +15,9 @@ from django.contrib.auth.models import Permission
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class':'form-control w-full py-2'})
-        self.fields['password'].widget.attrs.update({'class':'form-control w-full p-2 rounded-md'})
-    # username = forms.CharField(
-    #     widget=forms.TextInput(attrs={
-    #         'class': 'p-2 bg-slate-200 rounded-md w-full',
-    #         'placeholder': 'Email'
-    #     })
-    # )
-    # password = forms.CharField(
-    #     widget=forms.PasswordInput(attrs={
-    #         'class': 'p-2 bg-slate-200 rounded-md w-full',
-    #         'placeholder': 'Password'
-    #     })
-    # )
-    # class Meta:
-    #     model = User
-    #     field = ['username', 'email']
+        self.fields['username'].widget.attrs.update({'class':'form-control w-full py-2 px-2',"placeholder":"Enter Email"})
+        self.fields['password'].widget.attrs.update({'class':'form-control w-full p-2 px-2 rounded-md',"placeholder":"Enter password"})
+    
 
 
 
@@ -71,28 +59,49 @@ class SignUpForm(UserCreationForm):
 
 
 class OrderForm(forms.ModelForm):
+    senders_phonenumber = forms.CharField(widget=forms.TextInput(
+        attrs={
+                'class': 'form-textarea mt-1 block w-full border-2 p-2',
+                'rows': 2,
+                'cols': 40,
+                'placeholder': 'Enter the pickup location'
+            }
+    ))
+    receivers_phonenumber = forms.CharField(widget=forms.TextInput(
+        attrs={
+                'class': 'form-textarea mt-1 block w-full border-2 p-2',
+                'rows': 2,
+                'cols': 40,
+                'placeholder': 'Enter the pickup location'
+            }
+    ))
     class Meta:
         model = Order
-        fields = ['pickup_location', 'delivery_location','item_description']
+        fields = ['pickup_location', 'senders_phonenumber','delivery_location','receivers_phonenumber','item_description']
         widgets = {
             'item_description': forms.Textarea(attrs={
-                'class': 'form-textarea mt-1 block w-full',
+                'class': 'form-textarea mt-1 block w-full border-2 mb-2',
                 'rows': 3,
                 'cols': 40,
                 'placeholder': ''
             }),
             'pickup_location': forms.Textarea(attrs={
-                'class': 'form-textarea mt-1 block w-full',
+                'class': 'form-textarea mt-1 block w-full border-2',
                 'rows': 2,
                 'cols': 40,
                 'placeholder': 'Enter the pickup location'
             }),
+
+            
+            # 'senders_phone_number': PhoneNumberField(),
+
             'delivery_location': forms.Textarea(attrs={
-                'class': 'form-textarea mt-1 block w-full',
+                'class': 'form-textarea mt-1 block w-full border-2',
                 'rows': 2,
                 'cols': 40,
                 'placeholder': 'Enter the delivery location'
             }),
+
             'customer': forms.Select(attrs={
                 'class': 'form-select mt-1 block w-full',
             }),

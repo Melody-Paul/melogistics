@@ -10,13 +10,13 @@ from core.forms import UserCreationForm,UserEditForm
 
 
 class MainAdmin(admin.AdminSite):
-    site_header = "Melody's Delivery Admin dashboard"
-    site_title = "melody's Admin"
-    index_title = "melody's Admin"
+    site_header = "melogistics admin dashboard"
+    site_title = "melogistics admin"
+    index_title = "melody's admin"
     site_url = None
 
 class RidersAdmin(admin.AdminSite):
-    site_header = "Melody's Delivery Riders dashboard"
+    site_header = "Melogistics Riders dashboard"
     site_title = "Riders Dashboard"
     index_title = "Riders Dashboard"
     site_url = None

@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wr^0+r*imsa(4$_megxg@r(_g1ptt!-_wgc(w7_waqk6vs(x9$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise', #third party apps
-    'core',
+    'core'
     
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'logistic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, "core/templates"],
+        'DIRS': [BASE_DIR/"templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,3 +137,4 @@ EMAIL_HOST_PASSWORD = 'szkbdsfawpkwibkj'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = 'media/'
 STATIC_ROOT = 'staticfiles'
+

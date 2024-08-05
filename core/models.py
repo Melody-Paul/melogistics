@@ -4,6 +4,7 @@ from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import  PermissionsMixin
 
 
+
 class UserManager(BaseUserManager):
     def create_user(self,email = None,first_name = None,last_name = '',password = None,*args, **kwargs):
         if not email:
@@ -53,16 +54,21 @@ class CustomerProfile(models.Model):
 
 
 class Order(models.Model):
-    # item_description = models.TextField(default="")
     pickup_location = models.TextField(default="")
+    senders_phone_number = models.CharField(blank=True,max_length=90)
     delivery_location = models.TextField(default="")
+    receivers_phone_number = models.CharField(blank=True,max_length=90)
     item_description = models.TextField(default="")
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='customer_rides')
     driver = models.ForeignKey(RiderProfile, on_delete=models.CASCADE, related_name='customer_rides',null = True,blank = True)
     date_ordered = models.DateTimeField(auto_now_add=True)
-    # date_completed = models.DateTimeField(blank=True,null=True)
     stars = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
+
+    # class MyModel(models.Model):
+    #     name = models.CharField(max_length=255)
+    #     phone_number = PhoneNumberField()
+    #     fax_number = PhoneNumberField(blank=True)
 
     def __str__(self) -> str:
         return f'{self.customer.email} ordered on {self.date_ordered}'
