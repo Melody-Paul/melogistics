@@ -17,18 +17,18 @@ a{
 </style>
 <body>
     <nav class="bg-gray-800 p-4">
-        <div class="container mx-auto flex justify-between items-center flex-shrink-0">
-            <a href="{% url 'my_view' %}" class="bl">
-              <img class="h-20 w-30 items-end rounded-full" src="{% static 'images/logo 4.jpg' %}" alt="logo 4">
+        <div class="container flex justify-between items-center flex-shrink-0">
+            <a href="{% url 'my_view' %}" class="bl ">
+              <img class="h-20 w-30 items-end rounded-full ml-15" src="{% static 'images/logo 4.jpg' %}" alt="logo 4">
           </a>
           
-            <div class="hidden md:flex space-x-4">
-                <a href="{% url 'my_view' %}" class="text-gray-300 hover:text-orange-400 font-bold">Home</a>
-                <a href="{% url 'about' %}" class="text-gray-300 hover:text-orange-400 font-bold">About</a>
-                <a href="{% url 'services' %}" class="text-gray-300 hover:text-orange-400 font-bold">Services</a>
-                <a href="{% url 'contact' %}" class="text-gray-300 hover:text-orange-400 font-bold">Contact</a>
+            <div class="hidden md:flex space-x-4  ml-8rem mt-">
+                <a href="{% url 'my_view' %}" class="text-gray-300 hover:text-orange-400  ">Home</a>
+                <a href="{% url 'about' %}" class="text-gray-300 hover:text-orange-400 ">About</a>
+                <a href="{% url 'services' %}" class="text-gray-300 hover:text-orange-400 ">Services</a>
+                <a href="{% url 'contact' %}" class="text-gray-300 hover:text-orange-400 ">Contact</a>
             </div>
-            <div class="md:hidden">
+            <div class="sm:hidden">
                 <button id="menu-button" class="text-gray-300 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -36,7 +36,7 @@ a{
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="sm:hidden md:hidden hidden">
+        <div id="mobile-menu" class="sm:hidden hidden">
             <a href="{% url 'my_view' %}" class="block text-gray-300 hover:text-white px-2 py-1">Home</a>
             <a href="{% url 'about' %}" class="block text-gray-300 hover:text-white px-2 py-1">About</a>
             <a href="{% url 'services' %}" class="block text-gray-300 hover:text-white px-2 py-1">Services</a>
