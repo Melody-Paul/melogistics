@@ -31,7 +31,7 @@
           </a>
           <a
             href="{% url 'login' %}"
-            class="py-2 px-4 mt-5 rounded-[10px] bg-orange-600 cursor-pointer inline-block ml-4 text-black hover:bg-slate-800 hover:text-white hover:border-2 sm:text-[2.5rem] lg:text-[2rem]"
+            class="py-2 px-4 mt-5 rounded-[10px] bg-whit border-color cursor-pointer inline-block ml-4 text-black hover:bg-slate-800 hover:text-white hover:border-2 sm:text-[2.5rem] lg:text-[2rem]"
             >Login
           </a>
         </div>
@@ -56,12 +56,12 @@
     </div>
 
     <!-- Two Grid Section -->
-    <div class="container mx-4 py-16">
-      <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div class="container justify-center ml-24 py-16">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
         <div class="text-content">
           <strong><h2 class="text-3xl text-slate-700 mb-4 text-[3rem]">
             Our Story
-          </h2></strong>
+          </h2></strong> <br>
           <p class="text-gray-600 mb-4 text-[1.3rem] md:text-[1.6rem] sm:text-[1.6rem]">
             Melogistics is committed to transforming logistics with reliable and efficient delivery solutions. Our dedicated team and advanced technology ensure every package arrives on time, bringing peace of mind to our customers. Trust us to handle your logistics needs with care and excellence.
           </p>
@@ -191,49 +191,11 @@
               alt="Team Member"
             />
           </div>
-          {% comment %}
-          <div class="p-4">
-            <img
-              class="w-full h-30 object-cover rounded-lg"
-              src="{% static 'images/parcel.jpg' %}"
-              alt="Team Member"
-            />
-          </div>
-          <div class="p-4">
-            <img
-              class="w-full h-30 object-cover rounded-lg"
-              src="{% static 'images/groc.jpg' %}"
-              alt="Team Member"
-            />
-          </div>
-          <div class="p-4">
-            <img
-              class="w-full h-30 object-cover rounded-lg"
-              src="{% static 'images/clothes.jpg' %}"
-              alt="Team Member"
-            />
-          </div>
-          {% endcomment %}
+         
         </div>
       </div>
     </div>
 
-    {% comment %}
-    <div class="flex items-center justify-center w-full h-70 bg-gray-100">
-      <div class="max-w-xl mx-auto">
-        <h1 class="text-3xl text-center text-gray-600 mb-6">My Video</h1>
-        <div class="relative">
-          <video controls class="w-full mb-11" autoplay>
-            <source
-              src=" {% static 'images/vido.mp4' %}"
-              type="video/mp4"
-              autoplay
-            />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    {% endcomment %} {% endblock %}
+ {% endblock %}
   </body>
 </html>
