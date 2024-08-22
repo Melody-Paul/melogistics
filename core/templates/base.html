@@ -3,16 +3,21 @@
 <html>
 <head>
     <title>melogistics.onrender.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
+<style>
+p{
+ font-family:Rubik, sans-serif;
+}
+a{
+  font-size:1.5rem;
+}
+</style>
 <body>
     <nav class="bg-gray-800 p-4">
         <div class="container mx-auto flex justify-between items-center flex-shrink-0">
-        
-         
-            {% comment %} <div class="text-white text-lg font-bold border-2 border-white rounded-md">
-              MELODY'S Delivery
-                <p class='text-[0.6rem] font-light font-sans text-center text-bold mx-0 -my-1'>From us to your door step </p>
-            </div>  {% endcomment %}
             <a href="{% url 'my_view' %}" class="bl">
               <img class="h-20 w-30 items-end rounded-full" src="{% static 'images/logo 4.jpg' %}" alt="logo 4">
           </a>
@@ -31,7 +36,7 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden ">
+        <div id="mobile-menu" class="sm:hidden md:hidden hidden">
             <a href="{% url 'my_view' %}" class="block text-gray-300 hover:text-white px-2 py-1">Home</a>
             <a href="{% url 'about' %}" class="block text-gray-300 hover:text-white px-2 py-1">About</a>
             <a href="{% url 'services' %}" class="block text-gray-300 hover:text-white px-2 py-1">Services</a>
@@ -44,6 +49,7 @@
 {% endblock %}
 
 </div>
+
 <footer class="bg-gray-800 text-white pt-10 absolute w-full">
     <div class="max-w-6xl m-auto text-gray-800 flex flex-wrap justify-left">
       <!-- Company Info -->
@@ -92,7 +98,7 @@
     <!-- Copyright -->
     <div class="pt-2">
       <div class="flex pb-5 px-3 m-auto pt-5 border-t border-gray-500 text-gray-400 text-sm flex-col md:flex-row max-w-6xl">
-        <div class="mt-2 text-">© 2024 Melody's Delivery. All Rights Reserved.</div>
+        <div class="mt-2">© 2024 Melody's Delivery. All Rights Reserved.</div>
         <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
           <a href="https://www.facebook.com/profile.php?id=100092735882192" class="w-6 mx-1">
             <i class="fab fa-facebook"></i>
@@ -110,6 +116,7 @@
       </div>
     </div>
   </footer>
+
 
 
 
