@@ -81,8 +81,10 @@ class Contact(TemplateView):
 class SignUpView(TemplateView):
     template_name = 'user/signup.html'
     
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+    def get(self, request):
+
         form = SignUpForm()
+        del form.fields["usable_password"]
         return render(request,self.template_name,{"form":form})
     
     def post(self,request,*args,**kwargs):
