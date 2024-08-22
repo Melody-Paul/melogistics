@@ -65,10 +65,7 @@ class Order(models.Model):
     stars = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
 
-    # class MyModel(models.Model):
-    #     name = models.CharField(max_length=255)
-    #     phone_number = PhoneNumberField()
-    #     fax_number = PhoneNumberField(blank=True)
+    
 
     def __str__(self) -> str:
         return f'{self.customer.email} ordered on {self.date_ordered}'

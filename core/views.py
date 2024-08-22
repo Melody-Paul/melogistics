@@ -62,51 +62,6 @@ def edit_user(request):
     return render(request, 'dashboard.html', {'user_form': form})
 
 
-# def login_page(request):    THIS CODE IS WORKING FINE
-#     if request.method == 'POST':
-#         form = LoginForm(request, data=request.POST)
-#         if form.is_valid():
-#             user = authenticate(request,
-#                 username=form.cleaned_data['username'],
-#                 password=form.cleaned_data['password'],
-#             )
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect (reverse_lazy('core:dashboard'))
-#             else:
-#                 message  = 'Login failed!'
-#     else:
-        
-#         form = LoginForm()
-#     return render(request, 'user/login.html', context={'form': form})
-
-# class LoginView(View):
-#     template_name = 'user/login.html'
-#     authentication_form = forms.LoginForm
-
-#     def get(self, request):
-#         form = self.authentication_form()
-#         message = ''
-#         return render(request, self.template_name, context={'form': form, 'message': message})
-        
-#     def post(self, request):
-#         form = self.authentication_form(request.POST)
-#         if form.is_valid():
-#             user = authenticate(
-#                 email=form.cleaned_data['email'],
-#                 password=form.cleaned_data['password'],
-#             )
-#             if request.user.is_authenticated:
-#                 return redirect('core:dashboard')
-#             if user is not None:
-#                 try:
-#                    login(request, user)
-#                    return redirect('core:dashboard')
-#                 except Exception as e:
-#                     return e
-#         message = 'Login failed!'
-#         return render(request, self.template_name, context={'form': form, 'message': message})
-    
 
 def my_view(request):
     return render(request, "index.html")
@@ -165,11 +120,7 @@ class Dashboard(LoginRequiredMixin,TemplateView):
         return context
     
     
-# class LoginView(View):
-#     template = 'login.html'
-#     form_class = forms.
-#     pass
-    
+
 def create_order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -181,7 +132,8 @@ def create_order(request):
            delivery_location = form.cleaned_data['delivery_location']
 
            rider = RiderProfile.objects.order_by("?").all()[0]
-           order = Order.objects.create(pickup_location = pickup_location, senders_phone_number = senders_phone_number , item_description = item_description, delivery_location = delivery_location,receivers_phone_number = receivers_phone_number,customer = request.user,driver = rider)
+           order = Order.objects.create(pickup_location = pickup_location, senders_phone_number = senders_phone_number , item_description = item_description, delivery_location = delivery_location,
+           receivers_phone_number = receivers_phone_number,customer = request.user,driver = rider)
 
            return redirect("dashboard")
     else:

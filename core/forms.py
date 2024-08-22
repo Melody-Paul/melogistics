@@ -4,8 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import User,Order
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import Permission
-from phonenumber_field.formfields import PhoneNumberField
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 
 
