@@ -12,7 +12,7 @@ from core.forms import UserCreationForm,UserEditForm
 class MainAdmin(admin.AdminSite):
     site_header = "melogistics admin dashboard"
     site_title = "melogistics admin"
-    index_title = "melody's admin"
+    index_title = "melogistics admin"
     site_url = None
 
 class RidersAdmin(admin.AdminSite):
