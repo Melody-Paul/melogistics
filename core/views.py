@@ -1,4 +1,5 @@
 from typing import Any
+from .models import Prices
 from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render,get_object_or_404
@@ -75,6 +76,15 @@ class About(TemplateView):
 
 class Contact(TemplateView):
     template_name = "user/contact.html"
+
+def prices(request):
+    qs = Prices.objects.all()
+    ctx = {
+        "prices" : qs
+    }
+    return render(request, "user/prices.html",ctx)
+
+
 
 
 

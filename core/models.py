@@ -71,3 +71,9 @@ class Order(models.Model):
         return f'{self.customer.email} ordered on {self.date_ordered}'
 
     
+
+class Prices(models.Model):
+    name = models.CharField(max_length=120)
+    descripton1 = models.TextField()
+    price = models.IntegerField()
+    descripton2 = models.TextField()

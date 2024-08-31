@@ -7,7 +7,7 @@ from core.models import Order
 from core.models import User,CustomerProfile,RiderProfile,Order
 from django.contrib.auth.admin import UserAdmin
 from core.forms import UserCreationForm,UserEditForm
-
+from core.models import Prices
 
 class MainAdmin(admin.AdminSite):
     site_header = "melogistics admin dashboard"
@@ -39,7 +39,7 @@ class OrderAdmin(admin.ModelAdmin):
     pass
 
 main_admin.register(Order,OrderAdmin)
-
+main_admin.register(Prices)
 
  # or the name of your user model
 

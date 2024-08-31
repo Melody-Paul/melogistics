@@ -1,34 +1,41 @@
-<!DOCTYPE htmml>
+<!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>melogistics.onrender.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        p {
+            font-family: Rubik, sans-serif;
+        }
+        
+        a {
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
-<style>
-p{
- font-family:Rubik, sans-serif;
-}
-a{
-  font-size:1.5rem;
-}
-</style>
+
 <body>
     <nav class="bg-gray-800 p-4">
-        <div class="container flex justify-between items-center ml-16 flex-shrink-0">
-            <a href="{% url 'my_view' %}" class="bl ">
-              <img class="h-20 w-30 items-end rounded-full ml-15" src="{% static 'images/logo 4.jpg' %}" alt="logo 4">
-          </a>
-          
-            <div class="hidden md:flex space-x-4  ml-8rem ">
-                <a href="{% url 'my_view' %}" class="text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px] inline-block">Home</a>
-                <a href="{% url 'about' %}" class="text-gray-300  hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">About</a>
-                <a href="{% url 'services' %}" class="text-gray-300  hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Services</a>
-                <a href="{% url 'contact' %}" class="text-gray-300  hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Contact</a>
-            </div> 
-            <div class="sm:hidden">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'my_view' %}" class="flex-shrink-0">
+                <img class="h-16 w-16 rounded-full" src="{% static 'images/logo 4.jpg' %}" alt="Logo">
+            </a>
+
+            <div class="hidden md:flex space-x-4">
+                <a href="{% url 'my_view' %}" class="text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Home</a>
+                <a href="{% url 'about' %}" class="text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">About</a>
+                <a href="{% url 'services' %}" class="text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Services</a>
+                <a href="{% url 'prices' %}" class="text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Price</a>
+                <a href="{% url 'contact' %}" class="text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Contact</a>
+            </div>
+
+            <div class="md:hidden">
                 <button id="menu-button" class="text-gray-300 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -36,109 +43,115 @@ a{
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="sm:hidden hidden">
-            <a href="{% url 'my_view' %}" class="block text-gray-300 hover:text-white px-2 py-1">Home</a>
-            <a href="{% url 'about' %}" class="block text-gray-300 hover:text-white px-2 py-1">About</a>
-            <a href="{% url 'services' %}" class="block text-gray-300 hover:text-white px-2 py-1">Services</a>
-            <a href="{% url 'contact' %}" class="block text-gray-300 hover:text-white px-2 py-1">Contact</a>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <a href="{% url 'my_view' %}" class="block text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Home</a>
+            <a href="{% url 'about' %}" class="block text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">About</a>
+            <a href="{% url 'services' %}" class="block text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Services</a>
+            <a href="{% url 'prices' %}" class="block text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Price</a>
+            <a href="{% url 'contact' %}" class="block text-gray-300 hover:bg-orange-500 hover:text-white p-2 rounded-[100px]">Contact</a>
         </div>
     </nav>
+
     <div class='overflow-x-hidden'>
-{% block body %}
-
-{% endblock %}
-
-</div>
-
-<footer class="bg-gray-800 text-white pt-10 absolute w-full">
-    <div class="max-w-6xl m-auto text-gray-800 flex flex-wrap justify-left">
-      <!-- Company Info -->
-      <div class="p-5 w-full sm:w-1/2 md:w-1/4">
-        <div class="text-xs uppercase text-gray-400 font-medium mb-6">Company</div>
-        <p class="my-3 block text-gray-300">Melody's Delivery</p>
-        <p class="my-3 block text-gray-300">No 10 Enuebene Street, Agbana Nkwelle Awka, Anambra State, 12345</p>
-        <p class="my-3 block text-gray-300">Email: ifeakachwhukwu001@gmail.com</p>
-        <p class="my-3 block text-gray-300">Phone: +234 805 9083 317</p>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="p-5 w-full sm:w-1/2 md:w-1/4">
-        <div class="text-xs uppercase text-gray-400 font-medium mb-6">Quick Links</div>
-        <a href="{% url 'my_view' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Home</a>
-        <a href="{% url 'about' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">About Us</a>
-        <a href="{% url 'services' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Services</a>
-        <a href="{% url 'contact' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Contact</a>
-      </div>
-
-      <!-- Services -->
-      <div class="p-5 w-full sm:w-1/2 md:w-1/4">
-        <div class="text-xs uppercase text-gray-400 font-medium mb-6">Services</div>
-        <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Same Day Delivery</a>
-        <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Food Delivery</a>
-        <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Grocery Delivery</a>
-        <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Parcel Delivery</a>
-        <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Medical Delivery</a>
-        <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Customize Delivery</a>
-       
-      </div>
-
-      <!-- Social Media -->
-      <div class="p-5 w-full sm:w-1/2 md:w-1/4">
-        <div class="text-xs uppercase text-gray-400 font-medium mb-6">Follow Us</div>
-        <div class="flex space-x-3">
-          <a href="https://www.facebook.com/profile.php?id=100092735882192" class="text-gray-400 hover:text-gray-100 duration-300"><i class="fab fa-facebook-f"><img src="{% static 'icons/Facebook.svg' %}" /></i></a>
-          <a href="#" class="text-gray-400 hover:text-gray-100 duration-300"><i class="fab fa-twitter"><img src="{% static 'icons/Twitter.svg' %}" /></i></a>
-          <a href="#" class="text-gray-400 hover:text-gray-100 duration-300"><i class="fab fa-instagram">              <img src="{% static 'icons/Instagram.svg' %}" />
-          </i></a>
-          <a href="#" class="text-gray-400 hover:text-gray-100 duration-300"><i class="fab fa-linkedin">   <img src="{% static 'icons/Linkedin.svg' %}" /></i></a>
-        </div>
-      </div>
+        {% block body %}
+        {% endblock %}
     </div>
 
-    <!-- Copyright -->
-    <div class="pt-2">
-      <div class="flex pb-5 px-3 m-auto pt-5 border-t border-gray-500 text-gray-400 text-sm flex-col md:flex-row max-w-6xl">
-        <div class="mt-2">© 2024 Melody's Delivery. All Rights Reserved.</div>
-        <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
-          <a href="https://www.facebook.com/profile.php?id=100092735882192" class="w-6 mx-1">
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a href="#" class="w-6 mx-1">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="w-6 mx-1">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="w-6 mx-1">
-            <i class="fab fa-linkedin"></i>
-          </a>
+    <footer class="bg-gray-800 text-white pt-10 relative w-full">
+        <div class="max-w-6xl mx-auto text-gray-800 flex flex-wrap justify-left">
+            <!-- Company Info -->
+            <div class="p-5 w-full sm:w-1/2 md:w-1/4">
+                <div class="text-xs uppercase text-gray-400 font-medium mb-6">Company</div>
+                <p class="my-3 block text-gray-300">Melody's Delivery</p>
+                <p class="my-3 block text-gray-300">No 10 Enuebene Street, Agbana Nkwelle Awka, Anambra State, 12345</p>
+                <p class="my-3 block text-gray-300">Email: ifeakachwhukwu001@gmail.com</p>
+                <p class="my-3 block text-gray-300">Phone: +234 805 9083 317</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="p-5 w-full sm:w-1/2 md:w-1/4">
+                <div class="text-xs uppercase text-gray-400 font-medium mb-6">Quick Links</div>
+                <a href="{% url 'my_view' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Home</a>
+                <a href="{% url 'about' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">About Us</a>
+                <a href="{% url 'services' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Services</a>
+                <a href="{% url 'prices' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Price</a>
+                <a href="{% url 'contact' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Contact</a>
+            </div>
+
+            <!-- Services -->
+            <div class="p-5 w-full sm:w-1/2 md:w-1/4">
+                <div class="text-xs uppercase text-gray-400 font-medium mb-6">Services</div>
+                <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Same Day Delivery</a>
+                <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Food Delivery</a>
+                <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Grocery Delivery</a>
+                <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Parcel Delivery</a>
+                <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Medical Delivery</a>
+                <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Custom Delivery</a>
+            </div>
+
+            <!-- Social Media -->
+            <div class="p-5 w-full sm:w-1/2 md:w-1/4">
+                <div class="text-xs uppercase text-gray-400 font-medium mb-6">Follow Us</div>
+                <div class="flex space-x-3">
+                    <a href="https://www.facebook.com/profile.php?id=100092735882192" class="text-gray-400 hover:text-gray-100 duration-300">
+                        <img src="{% static 'icons/Facebook.svg' %}" alt="Facebook">
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-100 duration-300">
+                        <img src="{% static 'icons/Twitter.svg' %}" alt="Twitter">
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-100 duration-300">
+                        <img src="{% static 'icons/Instagram.svg' %}" alt="Instagram">
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-100 duration-300">
+                        <img src="{% static 'icons/Linkedin.svg' %}" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
 
+        <!-- Copyright -->
+        <div class="pt-2">
+            <div class="flex flex-col md:flex-row justify-between pb-5 px-3 m-auto pt-5 border-t border-gray-500 text-gray-400 text-sm max-w-6xl">
+                <div class="mt-2">© 2024 Melogistics Delivery Company. All Rights Reserved.</div>
+                <div class="flex space-x-3 mt-2">
+                    <a href="https://www.facebook.com/profile.php?id=100092735882192" class="w-6">
+                        <img src="{% static 'icons/Facebook.svg' %}" alt="Facebook">
+                    </a>
+                    <a href="#" class="w-6">
+                        <img src="{% static 'icons/Twitter.svg' %}" alt="Twitter">
+                    </a>
+                    <a href="#" class="w-6">
+                        <img src="{% static 'icons/Instagram.svg' %}" alt="Instagram">
+                    </a>
+                    <a href="#" class="w-6">
+                        <img src="{% static 'icons/Linkedin.svg' %}" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-
-
-  <script src="https://cdn.tailwindcss.com"></script>
-<script>
-    document.getElementById('menu-button').addEventListener('click', function() {
-        var menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
-</script>
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-  var _smartsupp = _smartsupp || {};
-  _smartsupp.key = '47677a627ac3854f84c169fd1c6f12b7493d9426';
-  window.smartsupp||(function(d) {
-    var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-    s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-    c.type='text/javascript';c.charset='utf-8';c.async=true;
-    c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-  })(document);
-  </script>
-  <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.getElementById('menu-button').addEventListener('click', function () {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+    <!-- Smartsupp Live Chat script -->
+    <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = '47677a627ac3854f84c169fd1c6f12b7493d9426';
+        window.smartsupp || (function (d) {
+            var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
+            s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
+            c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
+            c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
+    <noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
 </body>
 
 </html>
