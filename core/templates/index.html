@@ -9,18 +9,46 @@
   <body>
     {% block body %}
 
-    <div
+
+    <div class="min-h-[150px] lg:min-h-[80vh] bg-slate-100 flex lg:p-20 p-5 bg-cover bg-center bg-inherit" style="background-image: url('{% static 'images/hero.jpg' %}')">
+      <div class="lg:max-w-[70%] flex flex-col">
+        <h1 class="text-xl lg:text-3xl mb-8 text-white">
+          From our doorstep to yours, delivering excellence every time
+        </h1>
+        <p class="text-3xl lg:text-4xl text-white font-bold-bold">Discover amazing things with us.</p>
+    
+        <div class="flex mt-5 space-x-4">
+          <a href="{% url 'signup' %}" class="py-2 px-4 rounded-[10px] bg-orange-600 cursor-pointer text-white hover:bg-white hover:text-black hover:border-2 text-lg lg:text-base">SignUp</a>
+          <a href="{% url 'login' %}" class="py-2 px-4 rounded-[10px] bg-white border cursor-pointer text-black hover:bg-slate-800 hover:text-white hover:border-2 text-lg lg:text-base">Login</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="bg-slate-200 text-gray-900 py-20 rounded">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl lg:text-4xl font-bold mb-4">
+          Welcome to Our Website
+        </h1>
+        <p class="text-xl lg:text-3xl mb-8">
+          Discover amazing things with us.
+        </p>
+        <a href="{% url 'signup'%}" class="bg-orange-600 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-lg text-xl">Get Started</a>
+      </div>
+    </div>
+    
+
+
+    {% comment %} <div
       class="min-h-[150px] lg:min-h-[80vh] bg-slate-100 flex lg:p-20 p-5 bg-cover bg-center bg-inherit"
       style="background-image: url('{% static 'images/hero.jpg' %}')"
     >
       <div class="lg:max-w-[70%] flex flex-col">
         <h1
-          class="lg:text-[60px] md:text-[90px] sm:text-[2.5rem] text-white text-[3rem]">
+          class="text-xl mb-8 text-white">
           From our doorstep to yours, delivering excellence every time
-          <p class="mb-8 mt-5 sm:text-[1.7rem] lg:text-[1.7rem]">
-            Discover amazing things with us.
-          </p>
         </h1>
+        <p class="md:text-[57px]  lg:text-[65px] sm:text-[70px] text-white font-bold-bold">Discover amazing things with us.</p>
 
         <div class="flex animate-slide-left">
           <a
@@ -53,14 +81,14 @@
           >Get Started</a
         >
       </div>
-    </div>
+    </div> {% endcomment %}
 
     <!-- Two Grid Section -->
     <div class="container mx-auto px-4 py-16">
       <div class="grid md:grid-cols-2 gap-8 items-center">
         <div class="text-content">
           <h2 class="text-3xl text-slate-700 mb-4 text-[3rem] text-center">Our Story</h2>
-          <p class="text-gray-600 mb-4 text-[1.5rem]">
+          <p class="text-gray-600 mb-4 text-[1.3rem] md:text-[1.6rem] sm:text-[1.6rem]">
             Melogistics is committed to transforming logistics with reliable and efficient delivery solutions. Our dedicated team and advanced technology ensure every package arrives on time, bringing peace of mind to our customers. Trust us to handle your logistics needs with care and excellence.
           </p>
           <a

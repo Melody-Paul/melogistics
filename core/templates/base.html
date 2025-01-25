@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>melogistics.onrender.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <style>
@@ -60,7 +61,7 @@
     </div>
 
     <footer class="bg-gray-800 text-white pt-10 relative w-full">
-        <div class="max-w-6xl mx-auto text-gray-800 flex flex-wrap justify-left">
+        <div class="max-w-6xl mx-auto text-gray-800 flex flex-wrap justify-center ">
             <!-- Company Info -->
             <div class="p-5 w-full sm:w-1/2 md:w-1/4">
                 <div class="text-xs uppercase text-gray-400 font-medium mb-6">Company</div>
@@ -71,7 +72,7 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="p-5 w-full sm:w-1/2 md:w-1/4">
+            <div class="p-5 w-full sm:w-1/2 md:w-1/4 ml-20">
                 <div class="text-xs uppercase text-gray-400 font-medium mb-6">Quick Links</div>
                 <a href="{% url 'my_view' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Home</a>
                 <a href="{% url 'about' %}" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">About Us</a>
@@ -91,24 +92,27 @@
                 <a href="#" class="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">Custom Delivery</a>
             </div>
 
-            <!-- Social Media -->
+            {% comment %} <!-- Social Media -->
             <div class="p-5 w-full sm:w-1/2 md:w-1/4">
                 <div class="text-xs uppercase text-gray-400 font-medium mb-6">Follow Us</div>
-                <div class="flex space-x-3">
-                    <a href="https://www.facebook.com/profile.php?id=100092735882192" class="text-gray-400 hover:text-gray-100 duration-300">
+                <div class="flex space-x-3 mt-2">
+                    <a href="https://www.facebook.com/profile.php?id=100092735882192" class="w-6">
                         <img src="{% static 'icons/Facebook.svg' %}" alt="Facebook">
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gray-100 duration-300">
+                    <a href="https://wa.me/yourphonenumber" class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>                    
+                    <a href="#" class="w-6">
                         <img src="{% static 'icons/Twitter.svg' %}" alt="Twitter">
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gray-100 duration-300">
+                    <a href="#" class="w-6">
                         <img src="{% static 'icons/Instagram.svg' %}" alt="Instagram">
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gray-100 duration-300">
+                    <a href="#" class="w-6">
                         <img src="{% static 'icons/Linkedin.svg' %}" alt="LinkedIn">
                     </a>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
 
         <!-- Copyright -->
@@ -119,6 +123,9 @@
                     <a href="https://www.facebook.com/profile.php?id=100092735882192" class="w-6">
                         <img src="{% static 'icons/Facebook.svg' %}" alt="Facebook">
                     </a>
+                    <a href="https://wa.me/yourphonenumber" class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>                    
                     <a href="#" class="w-6">
                         <img src="{% static 'icons/Twitter.svg' %}" alt="Twitter">
                     </a>
@@ -140,18 +147,19 @@
             menu.classList.toggle('hidden');
         });
     </script>
-    <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-        var _smartsupp = _smartsupp || {};
-        _smartsupp.key = '47677a627ac3854f84c169fd1c6f12b7493d9426';
-        window.smartsupp || (function (d) {
-            var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
-            s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
-            c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
-            c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
-        })(document);
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/66d86a1aea492f34bc0da601/1i6ulsv36';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
     </script>
-    <noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+    <!--End of Tawk.to Script-->
 </body>
 
 </html>
